@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Survei Situasi Sehari-hari</title>
+<style>
+:root{--bg:#f4f6fa;--card:#fff;--tx:#1c2230;--mu:#667086;--bd:#e0e5ee;--ac:#2f6fed;--acx:#fff;--me:#2f6fed;--mex:#fff;--them:#eceff5;--ok:#1d9a62;--hd:#fafbfd;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--bg:#12151c;--card:#1b202a;--tx:#e8ebf2;--mu:#9aa3b6;--bd:#2c3342;--ac:#6b9bff;--acx:#0d1424;--me:#3a6fe0;--mex:#fff;--them:#262d3a;--ok:#4cc88d;--hd:#202632}}
+:root[data-theme="dark"]{color-scheme:dark;--bg:#12151c;--card:#1b202a;--tx:#e8ebf2;--mu:#9aa3b6;--bd:#2c3342;--ac:#6b9bff;--acx:#0d1424;--me:#3a6fe0;--mex:#fff;--them:#262d3a;--ok:#4cc88d;--hd:#202632}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+button,input,select,textarea{font:inherit;color:inherit}
+main{max-width:620px;margin:0 auto;padding:16px 16px 48px}
+.bar{height:5px;background:var(--bd);border-radius:9px;margin:4px 0 18px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--ac);transition:width .3s}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:18px 18px;margin-bottom:14px}
+h1{font-size:1.35rem;margin:0 0 8px}h2{font-size:1.1rem;margin:0 0 8px}
+p{margin:0 0 10px}.mu{color:var(--mu);font-size:.92rem}
+label.f{display:block;margin:12px 0 4px;font-weight:600;font-size:.95rem}
+input[type=number],select,textarea{width:100%;padding:10px 12px;border:1px solid var(--bd);border-radius:10px;background:var(--bg)}
+textarea{min-height:90px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.8rem}
+.btn{display:block;width:100%;margin-top:16px;padding:13px;border:0;border-radius:12px;background:var(--ac);color:var(--acx);font-weight:700;cursor:pointer}
+.btn.s{background:var(--them);color:var(--tx);margin-top:8px}.btn:disabled{opacity:.45;cursor:default}
+.err{color:#d33;font-size:.9rem;margin-top:8px;min-height:1.2em}
+.q{padding:12px 0;border-top:1px solid var(--bd)}.q:first-of-type{border-top:0}.q p{margin-bottom:8px}
+.lk{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}
+.lk label{cursor:pointer}.lk input{position:absolute;opacity:0;pointer-events:none}
+.lk span{display:block;text-align:center;padding:9px 0;border:1px solid var(--bd);border-radius:9px;background:var(--bg);font-weight:600}
+.lk input:checked+span{background:var(--ac);color:var(--acx);border-color:var(--ac)}
+.lk input:focus-visible+span{outline:2px solid var(--ac);outline-offset:2px}
+.ends{display:flex;justify-content:space-between;font-size:.78rem;color:var(--mu);margin-top:5px}
+.opt{display:block;padding:10px 12px;border:1px solid var(--bd);border-radius:10px;margin:6px 0;cursor:pointer}
+.opt input{margin-right:8px}
+.chat{background:var(--card);border:1px solid var(--bd);border-radius:16px;overflow:hidden}
+.hd{display:flex;gap:10px;align-items:center;padding:12px 14px;background:var(--hd);border-bottom:1px solid var(--bd)}
+.hd b{display:block;line-height:1.2}.hd small{color:var(--mu);font-size:.8rem}
+.av{width:42px;height:42px;border-radius:50%;background:var(--them);display:grid;place-items:center;font-size:1.3rem;flex:none}
+.dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--ok);margin:0 4px 1px 0}
+.msgs{padding:14px;display:flex;flex-direction:column;gap:8px;min-height:230px}
+.b{max-width:82%;padding:9px 13px;border-radius:16px;font-size:.97rem;animation:in .25s ease}
+.b.me{align-self:flex-end;background:var(--me);color:var(--mex);border-bottom-right-radius:5px}
+.b.th{align-self:flex-start;background:var(--them);border-bottom-left-radius:5px}
+.b small{display:block;opacity:.65;font-size:.7rem;margin-top:3px;text-align:right}
+.sig{align-self:flex-start;font-size:.8rem;color:var(--mu);margin:-2px 0 0 6px}
+.ty{align-self:flex-start;background:var(--them);padding:11px 14px;border-radius:16px;display:flex;gap:4px}
+.ty i{width:7px;height:7px;border-radius:50%;background:var(--mu);animation:bl 1s infinite}.ty i:nth-child(2){animation-delay:.15s}.ty i:nth-child(3){animation-delay:.3s}
+@keyframes bl{0%,60%,100%{opacity:.3}30%{opacity:1}}@keyframes in{from{opacity:0;transform:translateY(6px)}}
+.cap{text-align:center;color:var(--mu);font-size:.88rem;margin:10px 0 0}
+.cs{max-height:320px;overflow:auto;border:1px solid var(--bd);border-radius:10px;padding:12px 14px;background:var(--bg);font-size:.92rem;margin:10px 0}.cs h3{font-size:.95rem;margin:14px 0 4px}.cs h3:first-child{margin-top:0}.cs p{margin:0 0 6px}
+table{width:100%;border-collapse:collapse;font-size:.9rem}td,th{border:1px solid var(--bd);padding:6px;text-align:center}
+</style>
+</head>
+<body>
+<main><div class="bar"><i id="pb" style="width:0"></i></div><div id="app"></div></main>
+<script>
+const SRC={
+ ai:{n:"Asisten AI",s:"Chatbot AI",i:"🤖"},
+ psi:{n:"Psikolog",s:"Layanan konseling online",i:"🩺"},
+ tmn:{n:"Temanmu",s:"Teman",i:"🙂"}};
+const SC=[
+ {story:"Bayangkan beberapa minggu terakhir kamu merasa kewalahan. Tugas, janji, dan permintaan tolong dari orang-orang terus berdatangan, dan kamu sulit bilang tidak. Kamu mulai kurang tidur, mudah kesal, dan merasa bersalah kalau menolak. Kamu bingung apakah harus tetap menjalani semuanya atau mulai mengurangi sebagian. Akhirnya kamu mengetik pesan untuk meminta saran.",
+  me:"Akhir-akhir ini aku capek banget. Semuanya numpuk dan aku susah nolak permintaan orang. Aku bingung, harus tetap jalanin semuanya atau mulai kurangi sebagian?",
+  re:["Capek kayak gitu biasanya tanda kamu lagi menanggung terlalu banyak sekaligus. Daripada langsung memutuskan berhenti dari semuanya, coba catat dulu mana yang paling menguras tenaga dan mana yang masih kamu nikmati.",
+      "Setelah itu, pilih satu atau dua hal yang bisa dikurangi atau ditunda, lalu sampaikan ke orang yang terlibat dengan jujur. Coba jalani sekitar dua minggu, kemudian lihat lagi apakah kondisimu membaik. Berhenti sebentar bukan berarti lepas tangan."]},
+ {story:"Bayangkan akhir-akhir ini kamu sering melihat teman-temanmu tampak maju lebih cepat: ada yang meraih pencapaian, ada yang arahnya sudah jelas. Sementara kamu merasa jalan di tempat dan mulai meragukan pilihan-pilihanmu. Kamu jadi sering membandingkan diri dan sulit menikmati hal yang sedang kamu kerjakan. Kamu pun mengetik pesan untuk meminta saran.",
+  me:"Akhir-akhir ini aku ngerasa ketinggalan dibanding teman-temanku. Mereka kayak udah jelas arahnya, aku masih gini-gini aja. Aku jadi sering ragu sama diriku sendiri. Menurutmu aku harus gimana?",
+  re:["Perasaan ketinggalan itu umum banget, apalagi kalau yang kita lihat cuma hasil akhir dari orang lain. Biasanya yang kelihatan itu bagian terbaiknya saja, bukan proses dan keraguan yang ikut mereka lewati.",
+      "Coba tulis tiga hal yang sudah kamu kerjakan atau pelajari beberapa bulan terakhir, sekecil apa pun. Lalu tentukan satu langkah kecil minggu ini yang sesuai tujuanmu sendiri, bukan tujuan orang lain. Kalau perasaan ini terus mengganggu, ceritakan ke orang yang kamu percaya."]}];
+const NAMA={ai:"Chatbot AI",psi:"Psikolog",tmn:"Teman"};
+const rnd=n=>Math.floor(Math.random()*n), KEYS=Object.keys(SRC);
+const S={id:Date.now().toString(36)+Math.random().toString(36).slice(2,6),sc:rnd(2),src:({"#ai":"ai","#psikolog":"psi","#teman":"tmn"})[location.hash]||KEYS[rnd(3)],a:{}};
+const app=document.getElementById("app"),pb=document.getElementById("pb");
+const prog=p=>pb.style.width=p+"%";
+const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+const lik=(k,t,lo="Sangat tidak setuju",hi="Sangat setuju")=>`<div class="q"><p>${t}</p><div class="lk">${[1,2,3,4,5,6,7].map(n=>`<label><input type="radio" name="${k}" value="${n}"><span>${n}</span></label>`).join("")}</div><div class="ends"><span>${lo}</span><span>${hi}</span></div></div>`;
+function grab(keys){for(const k of keys){const e=document.querySelector(`input[name=${k}]:checked`);if(!e)return false;S.a[k]=e.value}return true}
+const err=m=>document.getElementById("er").textContent=m;
+const shuf=a=>a.map(x=>[Math.random(),x]).sort((p,q)=>p[0]-q[0]).map(x=>x[1]);
+
+function consent(){prog(5);app.innerHTML=`<div class="card"><h1>Survei Situasi Sehari-hari</h1>
+<p>Survei ini mempelajari bagaimana orang menanggapi saran dalam situasi sehari-hari. Kamu akan membaca satu situasi singkat beserta percakapan, lalu menjawab beberapa pertanyaan. Waktunya sekitar 5 menit.</p>
+<p class="mu">Keikutsertaan bersifat sukarela dan anonim. Kamu boleh berhenti kapan saja dengan menutup halaman ini. Jawabanmu hanya dipakai untuk keperluan penelitian. Tidak ada jawaban benar atau salah.</p>
+<label class="opt"><input type="checkbox" id="ck">Saya berusia 18 tahun ke atas dan bersedia berpartisipasi.</label>
+<div class="err" id="er"></div><button class="btn" id="go">Mulai</button></div>`;
+document.getElementById("go").onclick=()=>document.getElementById("ck").checked?demo():err("Centang persetujuan untuk melanjutkan.")}
+
+function demo(){prog(20);app.innerHTML=`<div class="card"><h2>Tentang kamu</h2>
+<label class="f" for="us">Usia (tahun)</label><input type="number" id="us" min="17" max="60" inputmode="numeric">
+<label class="f" for="sm">Semester saat ini</label><select id="sm"><option value="">Pilih…</option><option>1-2</option><option>3-4</option><option>5-6</option><option>7-8</option><option>9+</option><option>Sudah lulus</option></select>
+<label class="f" for="gd">Jenis kelamin</label><select id="gd"><option value="">Pilih…</option><option>Perempuan</option><option>Laki-laki</option><option>Tidak menjawab</option></select>
+<label class="f" for="fq">Seberapa sering kamu memakai chatbot AI?</label><select id="fq"><option value="">Pilih…</option><option value="1">Tidak pernah</option><option value="2">Beberapa kali setahun</option><option value="3">Tiap bulan</option><option value="4">Tiap minggu</option><option value="5">Hampir tiap hari</option></select>
+${lik("ai1","Secara umum, saya nyaman memakai AI untuk meminta saran pribadi.")}${lik("ai2","Saya percaya pada informasi yang diberikan AI.")}
+<div class="err" id="er"></div><button class="btn" id="go">Lanjut</button></div>`;
+document.getElementById("go").onclick=()=>{const g=i=>document.getElementById(i).value;
+ const u=+g("us");if(!(u>=17&&u<=60))return err("Isi usia dengan angka yang benar.");
+ if(!g("sm")||!g("gd")||!g("fq"))return err("Lengkapi semua isian.");
+ if(!grab(["ai1","ai2"]))return err("Jawab kedua pernyataan skala.");
+ Object.assign(S.a,{usia:u,semester:g("sm"),gender:g("gd"),frek_ai:g("fq")});scene()}}
+
+async function scene(){prog(40);const sc=SC[S.sc],sr=SRC[S.src];
+app.innerHTML=`<div class="card"><h2>Bacalah situasi berikut</h2><p>${sc.story}</p></div>
+<div class="chat"><div class="hd"><div class="av">${sr.i}</div><div><b>${sr.n}</b><small>${sr.s} · <i class="dot"></i>online</small></div></div><div class="msgs" id="m"></div></div>
+<p class="cap">Saran dari: <b>${sr.n}</b></p><div id="nx"></div>`;
+const m=document.getElementById("m");
+const bub=(t,c,tm)=>{const d=document.createElement("div");d.className="b "+c;d.textContent=t;const s=document.createElement("small");s.textContent=tm;d.appendChild(s);m.appendChild(d)};
+const typing=async()=>{const t=document.createElement("div");t.className="ty";t.innerHTML="<i></i><i></i><i></i>";m.appendChild(t);await sleep(1700);t.remove()};
+await sleep(600);bub(sc.me,"me","20.14");
+for(const r of sc.re){await typing();bub(r,"th","20.15")}
+const g=document.createElement("div");g.className="sig";g.textContent="— "+sr.n;m.appendChild(g);
+await sleep(1500);S.t0=Date.now();
+document.getElementById("nx").innerHTML=`<button class="btn" id="go">Lanjut ke pertanyaan</button>`;
+document.getElementById("go").onclick=()=>{S.a.detik_saran=Math.round((Date.now()-S.t0)/1000);dv()}}
+
+function dv(){prog(65);const it=[["percaya","Saya percaya saran ini baik untuk saya."],["niat","Saya akan mempertimbangkan untuk menjalankan saran ini."],["empati","Pemberi saran tampak memahami perasaan saya."],["kompetensi","Pemberi saran tampak tahu apa yang ia katakan."],["nyaman","Saya merasa nyaman menerima saran dari sumber ini."]];
+app.innerHTML=`<div class="card"><h2>Tanggapanmu atas saran tadi</h2><p class="mu">Bayangkan kamu adalah orang yang mengirim pesan tadi. Seberapa setuju kamu dengan pernyataan berikut?</p>${shuf(it).map(x=>lik(x[0],x[1])).join("")}<div class="err" id="er"></div><button class="btn" id="go">Lanjut</button></div>`;
+document.getElementById("go").onclick=()=>grab(it.map(x=>x[0]))?chk():err("Jawab semua pernyataan.")}
+
+function chk(){prog(85);app.innerHTML=`<div class="card"><h2>Dua pertanyaan terakhir</h2>
+<div class="q"><p>Menurut tampilan tadi, siapa yang memberi saran?</p>${Object.values(NAMA).concat("Tidak ingat").map(v=>`<label class="opt"><input type="radio" name="man" value="${v}">${v}</label>`).join("")}</div>
+${lik("realistis","Situasi pada cerita tadi terasa realistis.","Sangat tidak setuju","Sangat setuju")}${lik("relate","Saya bisa membayangkan diri saya mengalami situasi seperti itu.")}
+<div class="err" id="er"></div><button class="btn" id="go">Selesai</button></div>`;
+document.getElementById("go").onclick=()=>grab(["man","realistis","relate"])?done():err("Jawab semua pertanyaan.")}
+
+function row(){const a=S.a;return[S.id,new Date().toISOString(),S.sc+1,S.src,a.usia,a.semester,a.gender,a.frek_ai,a.ai1,a.ai2,a.percaya,a.niat,a.empati,a.kompetensi,a.nyaman,a.man,a.man===NAMA[S.src]?1:0,a.realistis,a.relate,a.detik_saran]}
+const HEAD="id,waktu,skenario,sumber,usia,semester,gender,frek_ai,sikap_ai1,sikap_ai2,percaya,niat,empati,kompetensi,nyaman,cek_jawab,cek_benar,realistis,relate,detik_saran";
+
+async function done(){prog(100);const r=row();let ok=false;
+try{const db=await claude.use("db");if(db){const o={};HEAD.split(",").forEach((k,i)=>o[k]=r[i]);await db.collection("responses").doc(S.id).set(o);ok=true}}catch(e){}
+app.innerHTML=`<div class="card"><h1>Terima kasih!</h1>
+${ok?'<p style="color:var(--ok);font-weight:600">Jawabanmu sudah tersimpan.</p>':`<p>Jawabanmu belum tersimpan otomatis. Salin kode di bawah, lalu kirim ke peneliti.</p><textarea id="cd" readonly>${r.join(",")}</textarea>${S.cf?`<p class="mu">Bukti persetujuan (kirim terpisah dari kode di atas, agar jawabanmu tetap anonim):</p><textarea readonly>${S.cf}</textarea>`:""}<button class="btn s" id="cp">Salin kode</button>`}
+</div><div class="card"><h2>Penjelasan penelitian</h2>
+<p>Penelitian ini menguji apakah label sumber saran (chatbot AI, psikolog, atau teman) memengaruhi seberapa dipercaya sebuah saran. Isi saran yang kamu baca sebenarnya <b>sama persis</b> untuk semua peserta; yang berbeda hanya siapa yang disebut sebagai pemberinya. Karena itu, saran tadi bukan saran pribadi untukmu.</p>
+<p>Percakapan tadi adalah skenario rekaan. Kalau situasi serupa sedang benar-benar kamu alami dan terasa berat, bercerita dengan orang yang kamu percaya atau tenaga profesional bisa sangat membantu. Pertanyaan tentang penelitian ini bisa disampaikan ke peneliti.</p></div>`;
+const cp=document.getElementById("cp");if(cp)cp.onclick=()=>{const t=document.getElementById("cd");t.select();navigator.clipboard?.writeText(t.value).catch(()=>{});cp.textContent="Tersalin"}}
+
+async function peneliti(){prog(100);app.innerHTML=`<div class="card"><h1>Tampilan peneliti</h1><p class="mu">Memuat data tersimpan. Baris dari “kode jawaban” peserta bisa ditempel di bawah untuk digabung.</p>
+<textarea id="man" placeholder="Tempel kode jawaban, satu baris per peserta"></textarea><button class="btn" id="ld">Muat dan hitung</button>
+<div id="out"></div></div>`;
+let rows=[];
+document.getElementById("ld").onclick=async()=>{rows=[];const out=document.getElementById("out");let note="";
+ try{const db=await claude.use("db");if(!db)throw 0;const s=await db.collection("responses").get();s.docs.forEach(d=>{const o=d.data();if(o)rows.push(HEAD.split(",").map(k=>o[k]??""))})}catch(e){note="Data tersimpan otomatis tidak bisa dibaca di tampilan ini. "}
+ let nc="?";try{const d2=await claude.use("db");nc=(await d2.collection("persetujuan").get()).docs.length}catch(e){}
+ const ids=new Set(rows.map(r=>r[0]));
+ document.getElementById("man").value.split("\n").map(l=>l.trim()).filter(Boolean).forEach(l=>{const c=l.split(",");if(c.length>=20&&!ids.has(c[0])){rows.push(c);ids.add(c[0])}});
+ const cnt={};rows.forEach(r=>{const k=r[2]+"|"+r[3];cnt[k]=(cnt[k]||0)+1});
+ out.innerHTML=`<p>${note}Total peserta: <b>${rows.length}</b> · Persetujuan tersimpan: <b>${nc}</b></p><table><tr><th>Skenario</th>${KEYS.map(k=>`<th>${NAMA[k]}</th>`).join("")}</tr>${[1,2].map(s=>`<tr><td>${s}</td>${KEYS.map(k=>`<td>${cnt[s+"|"+k]||0}</td>`).join("")}</tr>`).join("")}</table><button class="btn" id="dl">Unduh CSV</button>`;
+ document.getElementById("dl").onclick=async()=>{try{const d=await claude.use("downloads");if(!d)throw 0;await d.save({filename:"data_eksperimen.csv",data:[HEAD].concat(rows.map(r=>r.join(","))).join("\n")})}catch(e){try{const t=[HEAD].concat(rows.map(r=>r.join(","))).join("\n");const u=URL.createObjectURL(new Blob(["\ufeff"+t],{type:"text/csv"}));const l=document.createElement("a");l.href=u;l.download="data_eksperimen.csv";document.body.appendChild(l);l.click();l.remove()}catch(e2){out.insertAdjacentHTML("beforeend","<p class='mu'>Unduhan tidak tersedia di tampilan ini.</p>")}}}}}
+
+const CFG={nama:"[isi nama peneliti]",inst:"[isi program studi, universitas, dan dosen pengampu]",kontak:"[isi email atau nomor WhatsApp peneliti]",etik:""};
+function consent2(){prog(5);app.innerHTML=`<div class="card"><h1>Lembar Persetujuan (Informed Consent)</h1><p class="mu">Survei Situasi Sehari-hari. Baca seluruh isi di bawah sebelum menyetujui.</p>
+<div class="cs">
+<h3>1. Peneliti</h3><p>${CFG.nama}, ${CFG.inst}.${CFG.etik?` Nomor persetujuan etik: ${CFG.etik}.`:""}</p>
+<h3>2. Tujuan penelitian</h3><p>Penelitian ini mempelajari bagaimana orang menanggapi saran dalam situasi sehari-hari. Sebagian rincian tujuan penelitian sengaja belum dijelaskan agar jawabanmu tetap alami, dan akan dijelaskan lengkap setelah kamu selesai mengisi (debriefing).</p>
+<h3>3. Prosedur dan lama keikutsertaan</h3><p>Kamu akan mengisi data singkat (usia, semester, jenis kelamin), membaca satu situasi rekaan beserta percakapan singkat, lalu menjawab beberapa pertanyaan berskala. Seluruhnya memakan waktu sekitar 5 sampai 7 menit.</p>
+<h3>4. Potensi risiko dan ketidaknyamanan</h3><p>Risiko penelitian ini minimal, setara dengan yang dialami dalam kehidupan sehari-hari, dan tidak ada risiko fisik. Situasi dalam cerita menyangkut rasa lelah, tekanan, dan perasaan tertinggal dari orang lain. Topik ini dapat memunculkan perasaan kurang nyaman atau mengingatkan pada pengalaman pribadimu. Jika itu terjadi, kamu boleh berhenti kapan saja. Jika perasaan itu bertahan, bicarakan dengan orang yang kamu percaya, layanan konseling kampus, atau tenaga profesional. Percakapan dalam survei hanyalah skenario dan bukan layanan konseling atau medis.</p>
+<h3>5. Manfaat</h3><p>Tidak ada manfaat langsung bagimu. Keikutsertaanmu membantu menambah pengetahuan tentang bagaimana orang menerima saran.</p>
+<h3>6. Biaya dan imbalan</h3><p>Tidak ada biaya bagimu, dan tidak ada imbalan uang atas keikutsertaan ini.</p>
+<h3>7. Kerahasiaan dan penyimpanan data</h3><p>Jawabanmu bersifat anonim: survei tidak meminta nama atau kontak pada bagian data penelitian. Lembar ini tidak meminta nama lengkap maupun tanda tangan. Inisial atau nama samaran yang kamu isi hanya berfungsi sebagai tanda persetujuan, disimpan terpisah, dan tidak dihubungkan dengan jawabanmu. Data hanya dianalisis secara gabungan, dipakai untuk keperluan penelitian dan laporan, serta disimpan dengan aman oleh peneliti. Karena anonim, jawaban yang sudah dikirim tidak dapat ditarik kembali. Jawaban yang belum kamu kirim tidak dicatat.</p>
+<h3>8. Hak sebagai peserta</h3><p>Keikutsertaan bersifat sukarela. Kamu boleh menolak, melewati pertanyaan yang membuatmu tidak nyaman, atau berhenti kapan saja tanpa menyebut alasan dan tanpa konsekuensi apa pun, termasuk terhadap nilai atau hubunganmu dengan peneliti dan institusi. Kamu berhak bertanya sebelum, selama, dan sesudah mengisi.</p>
+<h3>9. Kontak</h3><p>Pertanyaan atau keluhan tentang penelitian ini dapat disampaikan ke ${CFG.nama} melalui ${CFG.kontak}.</p></div>
+<label class="opt"><input type="checkbox" class="cc">Saya sudah membaca dan memahami penjelasan di atas, dan sudah mendapat kesempatan bertanya.</label>
+<label class="opt"><input type="checkbox" class="cc">Saya berusia 18 tahun ke atas.</label>
+<label class="opt"><input type="checkbox" class="cc">Saya bersedia ikut serta secara sukarela dan tahu saya boleh berhenti kapan saja.</label>
+<label class="opt"><input type="checkbox" class="cc">Saya mengerti bahwa sebagian tujuan penelitian baru dijelaskan setelah survei selesai.</label>
+<label class="f" for="nm">Inisial atau nama samaran (bukan nama lengkap)</label><input type="text" id="nm" maxlength="12" autocomplete="off" placeholder="contoh: RA" style="width:100%;padding:10px 12px;border:1px solid var(--bd);border-radius:10px;background:var(--bg)">
+<p class="mu" style="margin-top:10px">Tanggal: ${new Date().toLocaleDateString("id-ID",{day:"numeric",month:"long",year:"numeric"})}</p>
+<div class="err" id="er"></div><button class="btn" id="go">Setuju dan mulai</button></div>`;
+document.getElementById("go").onclick=async()=>{
+ if([...document.querySelectorAll(".cc")].some(c=>!c.checked))return err("Centang keempat pernyataan persetujuan.");
+ const nm=document.getElementById("nm").value.trim();if(nm.length<2)return err("Isi inisial atau nama samaran (minimal 2 karakter).");
+ const w=new Date().toISOString();let ok=false;
+ try{const db=await claude.use("db");if(db){await db.collection("persetujuan").doc(Math.random().toString(36).slice(2,10)).set({inisial:nm,waktu:w});ok=true}}catch(e){}
+ if(!ok)S.cf=nm+","+w;
+ demo()}}
+location.hash==="#peneliti"?peneliti():consent2();
+</script>
+</body>
+</html>
